@@ -1,29 +1,49 @@
-<footer class="main-footer">
-  <div class="pull-right hidden-xs">
-    <b>Version</b> 1.0.0 <strong>Beta</strong>
-  </div>
-  <strong>Copyright &copy; Sep-2018 - Dic-2018 <a href="#">Nathaniel Mohamed Rodriguez Rivera</a>.</strong> All rights
-  reserved.
-</footer>
 
-</div>
-<!-- ./wrapper -->
+<!-- </div> -->
+<!-- Fin del container del header -->
+<script language="javascript">
+var base_url = '<?php echo base_url(); ?>';
+</script>
 
 <!-- JS SECTION-->
 <script src="<?php echo base_url(); ?>js/jquery-2.1.3.min.js"></script>
+<script src="<?php echo base_url(); ?>js/jquery-ui.min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap-switch.js"></script>
-<script src="<?php echo base_url(); ?>js/jquery-ui.min.js"></script>
 <script src="<?php echo base_url(); ?>js/jquery.formatCurrency-1.4.0.min.js"></script>
 <script src="<?php echo base_url(); ?>js/jquery.uitablefilter.js"></script>
-<script src="<?php echo base_url(); ?>js/fastclick/lib/fastclick.js"></script>
-<script src="<?php echo base_url(); ?>js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="<?php echo base_url(); ?>js/adminlte.min.js"></script>
-<script src="<?php echo base_url(); ?>js/demo.js"></script>
+<script src="<?php echo base_url(); ?>js/modals.js"></script>
+<script src="<?php echo base_url(); ?>js/jquery.numeric.min.js"></script>
 
-<script language="javascript">
-    var base_url = '<?php echo base_url(); ?>';
-</script>
+
+
+<!-- DataTable -->
+<script src="<?= base_url()?>plugins/datatables.min.js"></script>
+<script src="<?= base_url()?>plugins/Buttons-1.2.2/js/buttons.bootstrap.min.js"></script>
+<script src="<?= base_url()?>plugins/Buttons-1.2.2/js/buttons.colVis.min.js"></script>
+
+<!-- AdminLTE -->
+<script src="<?= base_url()?>js/AdminLTE.min.js"></script>
+
+<!-- formato de numeros -->
+<script src="<?= base_url()?>js/formatNumber.js"></script>
+
+<!-- SlimScroll -->
+<!-- <script src="<?= base_url()?>js/jquery.slimscroll.min.js"></script> -->
+
+<!-- scrips del sitio -->
+<?=$scripts?>
+
+<!-- Usuarios -->
+<?php
+if (strpos(current_url(), "usuarios") !== false) {
+  ?>
+  <script src="<?php echo base_url(); ?>js/usuarios.js"></script>
+  <?php
+}
+?>
+
+
 
 
 </body>

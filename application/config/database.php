@@ -51,7 +51,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'Dragoney13';
-$db['default']['database'] = 'punto_venta';
+$db['default']['database'] = 'puntoventa';
 /////////////////////////////////////
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
