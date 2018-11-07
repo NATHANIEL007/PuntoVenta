@@ -1,0 +1,71 @@
+[33mcommit 21887d5251b8f63d0312d4f593b1597c8cc1a250[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m)[m
+Author: Estela Saraí Cortés Córdova <aleetsee96@gmail.com>
+Date:   Tue Nov 6 23:58:23 2018 -0600
+
+    Se agregaron consultas de las ventas
+
+[33mcommit b83714755624cdf3a2a6ce7ffa36870186674b64[m
+Author: Estela Saraí Cortés Córdova <aleetsee96@gmail.com>
+Date:   Tue Nov 6 23:27:27 2018 -0600
+
+    Se agregaron consultas con la base de datos de usuarios
+
+[33mcommit d93add30b6bc81912be6342e4adec8fc4528348d[m[33m ([m[1;31morigin/development[m[33m)[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Tue Oct 30 23:47:12 2018 -0600
+
+    se agrega la funsion de aminitrador de js
+
+[33mcommit ad76e9688476f2c0b8555692b289bd0390ad4a5e[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Tue Oct 30 23:23:02 2018 -0600
+
+    Se se hace modificaciones en css, exactamente en fontasowen
+
+[33mcommit ba3fa603016edd5c2612f692d411abc7e34bcff4[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Tue Oct 30 23:17:53 2018 -0600
+
+    Se agregan las vistas de los tipos de roles que manejaremos en nuestro sistema
+
+[33mcommit 89d585186748c63138a7b4292bff8645846e1436[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Mon Oct 22 22:20:28 2018 -0500
+
+    Se agrego la carpeta plugins, que se ocuparan para nuestro punto de ventas
+
+[33mcommit 055aeda8b8e1fd7b20c0c8db4d5fa582606855db[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Mon Oct 22 22:16:34 2018 -0500
+
+    Creacion de vistas de modelo MVC
+
+[33mcommit 303c873beed4925129a36e175d2c44a138e134e2[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Sun Oct 21 15:44:02 2018 -0500
+
+    Agregando el archivo index.php
+
+[33mcommit a185e96f57dc6d86f658df899c3f078bdaa431df[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Sun Oct 21 15:43:22 2018 -0500
+
+    Agregando los archivos de scripts de js
+
+[33mcommit 0b8fe25fdecded29eadd249e466558bbce6b5468[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Sun Oct 21 15:41:57 2018 -0500
+
+    Agregando los archivos para dar froma al dado de front-end
+
+[33mcommit b5b60df0b2866131172fc18e322cd333165db98d[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Sun Oct 21 15:38:46 2018 -0500
+
+    Agregando los archivos de MVC del framework de codeigniter
+
+[33mcommit 7821d7ec790f9b0c67301177c7b26a2b8922b7a2[m
+Author: NATHANIEL007 <onehaki13@gmail.com>
+Date:   Sun Oct 21 15:34:36 2018 -0500
+
+    Inicio del sistema de Punto de ventas con el framework de codeigniter
