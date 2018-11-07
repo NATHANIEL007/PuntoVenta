@@ -7,21 +7,16 @@ class Delete extends CI_Model
     {
 		parent::__construct();
     }
+    //Eliminar un usuario de la tabla de usuarios :O
 
-
-    function eliminar($tabla,$where)
+   function delUser($id)
     {
-        return $this->db->delete($tabla, $where);
+        return $this->db->delete('tb_usuarios', array('id' => $id));
     }
-
-		function eliminarId($tabla,$id)
+    //Eliminar una venta
+    function delMovimiento($idVenta,$idItem)
     {
-        return $this->db->delete($tabla, array('id'=>$id));
-    }
-
-    function truncar($tabla)
-    {
-        $this->db->truncate($tabla);
+        return $this->db->delete('tb_movimientosventas', array('idVenta' => $idVenta,'idInventario'=>$idItem));
     }
 
 }
