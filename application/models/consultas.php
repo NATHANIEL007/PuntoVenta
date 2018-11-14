@@ -7,7 +7,6 @@ class Consultas extends CI_Model
 		parent::__construct();
 	}
 
-	//Consulta de tabla de usuarios y de tabla de inventarios
 	public function consultasIniciales()
 	{
 		$sqlUsuarios = "SELECT id FROM tb_usuarios";
@@ -31,7 +30,7 @@ class Consultas extends CI_Model
 		);
 		return $valores;
 	}
-	//Consulta para validar el inicio de sesión
+
 	function isUser($user, $pass)
 	{
 		$sql = "SELECT * FROM tb_usuarios WHERE username = ? ";
@@ -49,15 +48,13 @@ class Consultas extends CI_Model
 		}
 	}
 
-	//Consulta para buscar un usuario dentro de la base de datos
-
 	function findIdUser($user, $pass)
 	{
 		$sql = "SELECT * FROM tb_usuarios WHERE username = ? AND pass= ? ";
 		$query = $this->db->query($sql,array($user,$pass));
 		return $query->row();
 	}
-	//Consulta para verificar si existe un usuario
+
 	function existeUsername($user)
 	{
 		$sql = "SELECT id FROM tb_usuarios WHERE username = ? ";
@@ -69,14 +66,22 @@ class Consultas extends CI_Model
 	}
 
 
-	//Es otra consulta para ver las configuraciones
+
 	function getConfigs()
 	{
 		$sql = "SELECT * FROM tb_config limit 1";
 		$query = $this->db->query($sql);
 		return $r=$query->row();
 	}
-	//////////////////////////////////////////////NO SE QUE HACE ESTA COSA
+
+	function configTema()
+	{
+		$sql = "SELECT tema FROM tb_config limit 1";
+		$query = $this->db->query($sql);
+		$r=$query->row();
+		return $r->tema;
+	}
+
 	function configImpuesto()
 	{
 		$sql = "SELECT tema FROM tb_config limit 1";
@@ -84,7 +89,7 @@ class Consultas extends CI_Model
 		$r=$query->row();
 		return $r->tema;
 	}
-	//Tampoco se que hace pero selecciona el atributo de nombreEmpresa
+
 	function configNombreEmpresa()
 	{
 		$sql = "SELECT nombreEmpresa FROM tb_config limit 1";
@@ -92,8 +97,6 @@ class Consultas extends CI_Model
 		$r=$query->row();
 		return $r->nombreEmpresa;
 	}
-	//Aqui hace una consulta de la misma tabla pero con el atributo logo
-
 	function configLogo()
 	{
 		$sql = "SELECT logo FROM tb_config limit 1";
@@ -102,8 +105,32 @@ class Consultas extends CI_Model
 		return $r->logo;
 	}
 
+	function getInventario($codigo="")
+	{
+		if($codigo!="")
+		{
+			$sql = "SELECT  inv.id,inv.codigo,inv.descripcion,inv.costo,inv.precio,inv.precioMayoreo,inv.cantidadMayoreo,inv.idDepartamento,inv.cantidad,inv.idProveedor,dep.departamento,inv.idTipo,tv.nombreTipo, tp.nombre as proveedor
+			FROM tb_inventario inv
+			inner join tb_departamentos dep on inv.idDepartamento = dep.id
+			inner join tb_tipos tv on inv.idTipo = tv.id
+			inner join tb_proveedores tp on inv.idProveedor = tp.id
+			WHERE codigo = ?
+			ORDER BY inv.descripcion ASC";
+			$query = $this->db->query( $sql,array($codigo) );
+			return $query->row_array();
+		}
+		else{
+			$sql = "SELECT  inv.id,inv.codigo,inv.descripcion,inv.costo,inv.precio,inv.precioMayoreo,inv.cantidadMayoreo,inv.idDepartamento,inv.cantidad,inv.idProveedor,dep.departamento,inv.idTipo,tv.nombreTipo, tp.nombre as proveedor
+			FROM tb_inventario inv
+			inner join tb_departamentos dep on inv.idDepartamento = dep.id
+			inner join tb_tipos tv on inv.idTipo = tv.id
+			inner join tb_proveedores tp on inv.idProveedor = tp.id
+			ORDER BY inv.descripcion ASC";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+	}
 
-	//Aquí supongo que obtiene el id del inventario que se esta seleccionando para consultarlo
 	function getInventariobyId($id)
 	{
 		$sql = "SELECT  *
@@ -112,7 +139,7 @@ class Consultas extends CI_Model
 		$query = $this->db->query( $sql, array($id) );
 		return $query->row_array();
 	}
-	//Aquí supongo que muestra la consulta de todas las ventas junto con sus llaves foraneas
+
 	function getVentas()
 	{
 		$sql = "SELECT  vts.id,vts.idUsuario,vts.Total,vts.Fecha,u.nombre as nombreUsuario
@@ -122,7 +149,7 @@ class Consultas extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
-	//Obtiene los ids de las ventasy la junta con la tabla inventario
+
 	public function getItemsDeVentas($idVenta)
 	{
 		$sql = "SELECT mv.*, inv.descripcion
@@ -133,9 +160,8 @@ class Consultas extends CI_Model
 		return $query->result_array();
 	}
 
-	///NO SE PARA QUE TANTO :\
 
-	
+
 	function getDepartamentos($idDepartamento=0)
 	{
 		if($idDepartamento>0){
@@ -200,6 +226,21 @@ class Consultas extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getProveedores($idProv=0){
+		if($idProv>0){
+			$sql = "SELECT * FROM tb_proveedores WHERE id= ?	ORDER BY nombre ASC";
+			$query = $this->db->query( $sql, array($idProv) );
+			return $query->row_array();
+		}
+		else {
+			$sql = "SELECT * FROM tb_proveedores	ORDER BY nombre ASC";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+	}
+
+
+
 	public function getRoles()
 	{
 		$sql = "SELECT * FROM tb_roles";
@@ -219,8 +260,42 @@ class Consultas extends CI_Model
 		return true;
 	}
 
-	
+	public function getMovimientoVenta($idVenta,$idItem)
+	{
+		$sql = "SELECT * FROM tb_movimientosventas WHERE idVenta = ? AND idInventario= ? ";
+		$query = $this->db->query($sql, array($idVenta,$idItem) );
+		return $query->row_array();
+	}
 
+	public function getMovimientosData($codigo="")
+	{
+		if($codigo==""){
+			$sql = "SELECT mvs.id,mvs.idVenta,mvs.cantidad, vts.Fecha,inv.codigo,inv.descripcion,us.nombre as usuario,mvs.tipo,mvs.fechaEntrada
+			FROM tb_movimientosventas mvs
+			left outer join tb_ventas vts on mvs.idVenta=vts.id
+			left outer join tb_inventario inv on mvs.idInventario=inv.id
+			left outer join tb_usuarios us on vts.idUsuario=us.id";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+		else{
+			$sql = "SELECT mvs.id,mvs.idVenta,mvs.cantidad, vts.Fecha,inv.codigo,inv.descripcion,us.nombre as usuario,,mvs.fechaEntrada
+			FROM tb_movimientosventas mvs
+			left outer join tb_ventas vts on mvs.idVenta=vts.id
+			left outer join tb_inventario inv on mvs.idInventario=inv.id
+			left outer join tb_usuarios us on vts.idUsuario=us.id
+			WHERE inv.codigo=?";
+			$query = $this->db->query($sql, array($codigo) );
+			return $query->result_array();
+		}
+	}
+
+	public function getVentaById($idVenta)
+	{
+		$sql = "SELECT * FROM tb_ventas WHERE id = ?";
+		$query = $this->db->query($sql, array($idVenta) );
+		return $query->row_array();
+	}
 
 	function getMaxIdVentasByUser($idUsuario)
 	{
@@ -309,48 +384,5 @@ class Consultas extends CI_Model
 		return $r->tiketera;
 	}
 
-
-
-	//
-	// function miConsulta($valor)
-	// {
-	// 	$query = $this->db->query("SELECT * FROM tabla WHERE columna = '$valor' ");
-	//
-	// 	if ($query->num_rows() > 0):
-	// 		return $query->result_array();
-	// 		return $query->row_array();
-	// 		return $query->row();
-	// 	else:
-	// 		return FALSE;
-	// 	endif;
-	// }
-
-	function consultaGral($tabla,$columna,$valor,$tipo)
-	// tipo 1: puede obtener muchas filas
-	// tipo 2: obtendra solo una fila en un arreglo
-	// tipo 3: obtendra solo una fila
-	{
-		$query = $this->db->query("SELECT * FROM $tabla WHERE $columna = '$valor' ");
-
-		if ($query->num_rows() > 0){
-			switch ($tipo) {
-				case '1':
-				return $query->result_array();
-				break;
-				case '2':
-				return $query->row_array();
-				break;
-				case '3':
-				return $query->row();
-				break;
-			}
-		}
-		else{
-			return FALSE;
-		}
-	}
-
-
 }
-
 ?>
