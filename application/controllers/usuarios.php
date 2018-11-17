@@ -43,7 +43,7 @@ class Usuarios extends CI_Controller
     $this->load->view('header',$dataHeader);
     $this->load->view('sidebar',$dataSidebar);
     $this->load->view('usuarios',$data);
-    $this->load->view('footer');
+    $this->load->view('main-footer');
     $dataFooter=array(
       'scripts'=> "<script src='".base_url()."js/admin.js'></script>"
     );
@@ -138,6 +138,9 @@ class Usuarios extends CI_Controller
       $idUser = $this->input->post('idu');
       $this->delete->delUser($idUser);
     }
+
+
+
 
 
     // encriptar

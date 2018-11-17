@@ -8,38 +8,25 @@ class Insertar extends CI_Model
 		parent::__construct();
 	}
 
-	/***************************************************
-	INSERTAR
-	**************************************************/
 
-	function insertar($tabla,$data)
-	{
-		$this->db->insert($tabla, $data);
-		return $this->db->insert_id();
-	}
-
-	/***************************************************
-	ACTUALIZAR
-	***************************************************/
-	function actualizar($tabla,$data,$where){
-		return $this->db->update($tabla,$data,$where);
-	}
-
-	/***************************************************
-	REMPLAZAR
-	***************************************************/
-	function remplazar($tabla,$data)
-	{
-		return $this->db->replace($tabla, $data);
-	}
-
-	/*******************************************************
-	Agregar usuarios, ventas, configuraciones, productos
-	*******************************************************/
-	function newProveedor($data)
+		function newProveedor($data)
 	{
 		return $this->db->insert('tb_proveedores', $data);
 	}
+	function setProveedor($data,$where)
+	{
+		return $this->db->update('tb_proveedores', $data,$where);
+	}
+
+	function newCliente($data)
+	{
+		return $this->db->insert('tb_clientes', $data);
+	}
+	function setCliente($data,$where)
+	{
+		return $this->db->update('tb_clientes', $data,$where);
+	}
+
 
 	function newProducto($data)
 	{
@@ -60,7 +47,10 @@ class Insertar extends CI_Model
 		$this->db->insert('tb_departamentos', $data);
 		return $this->db->insert_id();
 	}
-
+	function setDepartamento($data,$where)
+	{
+		return $this->db->update('tb_departamentos', $data,$where);
+	}
 
 	function setUser($data,$where)
 	{
@@ -72,7 +62,19 @@ class Insertar extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function setVenta($data,$where)
+	{
+		return $this->db->update('tb_ventas', $data,array('id'=>$where));
+	}
 
+	function newMovimientoVenta($data)
+	{
+		return $this->db->insert('tb_movimientosventas', $data);
+	}
+	function updateMovimientoVenta($data,$where)
+	{
+		return $this->db->update('tb_movimientosventas', $data,$where);
+	}
 
 	public function setConfig($data)
 	{
@@ -80,5 +82,5 @@ class Insertar extends CI_Model
 	}
 
 
-	}
-	?>
+}
+?>
